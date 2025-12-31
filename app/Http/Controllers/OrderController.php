@@ -3,19 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Actions\ProcessOrderAction;
-use Illuminate\Http\Request;
+use App\Http\Requests\ProcessOrderRequest;
 
 class OrderController extends Controller
 {
-    /**
-    {
-        $validated = $request->validate([
-            'customer_id' => 'required|integer',
-            'items' => 'required|array|min:1',
-            'items.*.product_id' => 'required|integer',
-            'items.*.quantity' => 'required|integer|min:1',
-        ]);
-     */
+   
     protected $processOrderAction;
 
     /**
@@ -28,7 +20,7 @@ class OrderController extends Controller
         $this->processOrderAction = $processOrderAction;
     }
 
-    public function processOrder(Request $request)
+    public function processOrder(ProcessOrderRequest $request)
     {
         $result = ($this->processOrderAction)($request);
 
